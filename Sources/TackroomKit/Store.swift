@@ -1,3 +1,4 @@
+import Darwin
 import Foundation
 
 // MARK: - Lockfile
@@ -160,23 +161,112 @@ public struct Git: Sendable {
         let inPipe = input.map { _ in Pipe() }
         if let inPipe { process.standardInput = inPipe } else { process.standardInput = FileHandle.nullDevice }
         try process.run()
-        // Read stderr on the side so a chatty command can't fill its pipe and stall.
-        let errBox = ErrBox()
-        let reading = DispatchGroup()
-        reading.enter()
-        let errHandle = err.fileHandleForReading
-        DispatchQueue.global().async { errBox.data = errHandle.readDataToEndOfFile(); reading.leave() }
-        if let inPipe, let input {
-            let handle = inPipe.fileHandleForWriting
-            DispatchQueue.global().async { handle.write(Data(input.utf8)); try? handle.close() }
+        let outFD = out.fileHandleForReading.fileDescriptor
+        let errFD = err.fileHandleForReading.fileDescriptor
+        func setNonBlocking(_ fd: Int32) {
+            let flags = fcntl(fd, F_GETFL)
+            if flags >= 0 { _ = fcntl(fd, F_SETFL, flags | O_NONBLOCK) }
         }
-        let data = out.fileHandleForReading.readDataToEndOfFile()
+        setNonBlocking(outFD)
+        setNonBlocking(errFD)
+
+        let inData = input.map { Data($0.utf8) } ?? Data()
+        var inOffset = 0
+        var inOpen = false
+        var inFD: Int32 = -1
+        if let inPipe {
+            inFD = inPipe.fileHandleForWriting.fileDescriptor
+            _ = fcntl(inFD, F_SETNOSIGPIPE, 1)
+            if inData.isEmpty {
+                try? inPipe.fileHandleForWriting.close()
+            } else {
+                setNonBlocking(inFD)
+                inOpen = true
+            }
+        }
+
+        var outData = Data()
+        var errData = Data()
+        var outOpen = true
+        var errOpen = true
+        var buffer = [UInt8](repeating: 0, count: 8192)
+
+        func drain(_ fd: Int32, into target: inout Data) -> Bool {
+            while true {
+                let n = buffer.withUnsafeMutableBytes { ptr in
+                    Darwin.read(fd, ptr.baseAddress, ptr.count)
+                }
+                if n > 0 {
+                    target.append(contentsOf: buffer[..<n])
+                } else if n == 0 {
+                    return false
+                } else if errno == EINTR {
+                    continue
+                } else if errno == EAGAIN || errno == EWOULDBLOCK {
+                    return true
+                } else {
+                    return false
+                }
+            }
+        }
+
+        while outOpen || errOpen || inOpen {
+            var fds: [pollfd] = []
+            if outOpen { fds.append(pollfd(fd: outFD, events: Int16(POLLIN), revents: 0)) }
+            if errOpen { fds.append(pollfd(fd: errFD, events: Int16(POLLIN), revents: 0)) }
+            if inOpen { fds.append(pollfd(fd: inFD, events: Int16(POLLOUT), revents: 0)) }
+            let ready = fds.withUnsafeMutableBufferPointer { buf in
+                Darwin.poll(buf.baseAddress, nfds_t(buf.count), -1)
+            }
+            if ready < 0 {
+                if errno == EINTR { continue }
+                break
+            }
+            for pfd in fds where pfd.revents != 0 {
+                let revents = Int32(pfd.revents)
+                if pfd.fd == inFD && inOpen {
+                    if revents & (POLLOUT | POLLERR | POLLHUP | POLLNVAL) != 0 {
+                        while inOffset < inData.count {
+                            let written = inData.withUnsafeBytes { raw -> Int in
+                                guard let base = raw.baseAddress else { return 0 }
+                                return Darwin.write(inFD, base.advanced(by: inOffset), inData.count - inOffset)
+                            }
+                            if written > 0 {
+                                inOffset += written
+                            } else if written < 0 && errno == EINTR {
+                                continue
+                            } else if written < 0 && (errno == EAGAIN || errno == EWOULDBLOCK) {
+                                break
+                            } else {
+                                inOffset = inData.count
+                                break
+                            }
+                        }
+                        if inOffset >= inData.count {
+                            try? inPipe?.fileHandleForWriting.close()
+                            inOpen = false
+                        }
+                    }
+                } else if pfd.fd == outFD && outOpen {
+                    if revents & (POLLIN | POLLHUP | POLLERR | POLLNVAL) != 0 {
+                        outOpen = drain(outFD, into: &outData)
+                    }
+                } else if pfd.fd == errFD && errOpen {
+                    if revents & (POLLIN | POLLHUP | POLLERR | POLLNVAL) != 0 {
+                        errOpen = drain(errFD, into: &errData)
+                    }
+                }
+            }
+        }
+
+        try? out.fileHandleForReading.close()
+        try? err.fileHandleForReading.close()
+        if inOpen { try? inPipe?.fileHandleForWriting.close() }
         process.waitUntilExit()
-        reading.wait()
         if process.terminationStatus != 0 && !allowFailure {
-            throw TackroomError.git(args.first ?? "", String(decoding: errBox.data ?? Data(), as: UTF8.self))
+            throw TackroomError.git(args.first ?? "", String(decoding: errData, as: UTF8.self))
         }
-        return (String(decoding: data, as: UTF8.self), process.terminationStatus)
+        return (String(decoding: outData, as: UTF8.self), process.terminationStatus)
     }
 
     /// Copies one tree (`<commit>:<path>`) into an empty folder without
@@ -207,8 +297,6 @@ public struct Git: Sendable {
         return try run(["write-tree"], env: env).trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }
-
-private final class ErrBox: @unchecked Sendable { var data: Data? }
 
 public enum TackroomError: Error, LocalizedError, Sendable {
     case git(String, String)
