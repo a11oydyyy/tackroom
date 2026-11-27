@@ -1,0 +1,9 @@
+.DS_Store
+.build/
+build/
+*.xcodeproj/xcuserdata/
+.swiftpm/
+
+# Working notes kept out of the public repository
+review/
+m0/

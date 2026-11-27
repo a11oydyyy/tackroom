@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>%lld 筆紀錄。</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%1$lld %1$#@n@.</string>
+		<key>n</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>entry</string>
+			<key>other</key>
+			<string>entries</string>
+		</dict>
+	</dict>
+	<key>新增後會套用到選取的 %lld 個 skill。</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>It will be applied to the %1$lld selected %1$#@n@.</string>
+		<key>n</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>skill</string>
+			<key>other</key>
+			<string>skills</string>
+		</dict>
+	</dict>
+	<key>將從 %lld 個 skill 移除此標籤，skill 本身不受影響。</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>The tag will be removed from %1$lld %1$#@n@; the skills themselves are not affected.</string>
+		<key>n</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>skill</string>
+			<key>other</key>
+			<string>skills</string>
+		</dict>
+	</dict>
+	<key>%lld 份文件。</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%1$lld %1$#@n@.</string>
+		<key>n</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>document</string>
+			<key>other</key>
+			<string>documents</string>
+		</dict>
+	</dict>
+	<key>%lld 份副本</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%1$lld %1$#@n@</string>
+		<key>n</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>copy</string>
+			<key>other</key>
+			<string>copies</string>
+		</dict>
+	</dict>
+	<key>%lld 個新版本</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%1$lld new %1$#@n@</string>
+		<key>n</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>version</string>
+			<key>other</key>
+			<string>versions</string>
+		</dict>
+	</dict>
+	<key>%lld 個 agent 請求</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%1$lld agent %1$#@n@</string>
+		<key>n</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>request</string>
+			<key>other</key>
+			<string>requests</string>
+		</dict>
+	</dict>
+	<key>納入 Tackroom 管理 %lld 個 skill</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Manage %1$lld %1$#@n@ with Tackroom</string>
+		<key>n</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>skill</string>
+			<key>other</key>
+			<string>skills</string>
+		</dict>
+	</dict>
+	<key>會在專案資料夾新增 %lld 個檔案，可能隨 git commit 一起分享出去</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Adds %1$lld %1$#@n@ to the project folder, which may be shared with the next git commit</string>
+		<key>n</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>file</string>
+			<key>other</key>
+			<string>files</string>
+		</dict>
+	</dict>
+	<key>%lld 個 skill</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%1$lld %1$#@n@</string>
+		<key>n</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>skill</string>
+			<key>other</key>
+			<string>skills</string>
+		</dict>
+	</dict>
+	<key>展開全文（共 %lld 行）</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Show full text (%1$lld %1$#@n@)</string>
+		<key>n</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>line</string>
+			<key>other</key>
+			<string>lines</string>
+		</dict>
+	</dict>
+	<key>%lld 個 skill。</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%1$lld %1$#@n@.</string>
+		<key>n</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>skill</string>
+			<key>other</key>
+			<string>skills</string>
+		</dict>
+	</dict>
+	<key>%lld 個需要留意</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%1$lld %1$#@n@ attention</string>
+		<key>n</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>needs</string>
+			<key>other</key>
+			<string>need</string>
+		</dict>
+	</dict>
+	<key>其他 agent 有 %lld 筆符合</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%1$lld %1$#@n@ for other agents</string>
+		<key>n</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>match</string>
+			<key>other</key>
+			<string>matches</string>
+		</dict>
+	</dict>
+	<key>近 30 天 %lld 次</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%1$lld %1$#@n@ in 30 days</string>
+		<key>n</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>time</string>
+			<key>other</key>
+			<string>times</string>
+		</dict>
+	</dict>
+	<key>已選取 %lld 個 skill</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%1$lld %1$#@n@ selected</string>
+		<key>n</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>skill</string>
+			<key>other</key>
+			<string>skills</string>
+		</dict>
+	</dict>
+	<key>%lld 天前</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%1$lld %1$#@n@ ago</string>
+		<key>n</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>day</string>
+			<key>other</key>
+			<string>days</string>
+		</dict>
+	</dict>
+	<key>%lld 週前</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%1$lld %1$#@n@ ago</string>
+		<key>n</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>week</string>
+			<key>other</key>
+			<string>weeks</string>
+		</dict>
+	</dict>
+	<key>%lld 個月前</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%1$lld %1$#@n@ ago</string>
+		<key>n</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>month</string>
+			<key>other</key>
+			<string>months</string>
+		</dict>
+	</dict>
+	<key>%lld 年前</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%1$lld %1$#@n@ ago</string>
+		<key>n</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>year</string>
+			<key>other</key>
+			<string>years</string>
+		</dict>
+	</dict>
+	<key>替換 %@ 的 %lld 個檔案</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Replace %2$lld %2$#@n@ of %1$@</string>
+		<key>n</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>file</string>
+			<key>other</key>
+			<string>files</string>
+		</dict>
+	</dict>
+	<key>套用上游的 %lld 個檔案變更</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Apply %1$lld upstream file %1$#@n@</string>
+		<key>n</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>change</string>
+			<key>other</key>
+			<string>changes</string>
+		</dict>
+	</dict>
+	<key>保留你修改過的 %lld 個檔案中的修改</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Keep your edits in %1$lld %1$#@n@</string>
+		<key>n</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>file</string>
+			<key>other</key>
+			<string>files</string>
+		</dict>
+	</dict>
+	<key>%lld 個新版本待審。</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%1$lld new %1$#@n@ to review.</string>
+		<key>n</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>version</string>
+			<key>other</key>
+			<string>versions</string>
+		</dict>
+	</dict>
+	<key>%@ · 影響 %lld 個 agent</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%1$@ · affects %2$lld %2$#@n@</string>
+		<key>n</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>agent</string>
+			<key>other</key>
+			<string>agents</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
