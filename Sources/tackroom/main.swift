@@ -193,8 +193,11 @@ case "mcp":
                 if let p = s.plugin { notes.append("plugin \(p)") }
                 if !s.plaintextSecrets.isEmpty { notes.append("明文金鑰：" + s.plaintextSecrets.joined(separator: "、")) }
                 if let f = s.floatingPackage { notes.append("每次抓最新版 \(f)") }
-                print("  \(s.enabled ? "✓" : "–") \(s.name)  [\(s.transport.rawValue)] " + (s.address ?? s.program.map { ($0 as NSString).lastPathComponent } ?? "")
-                      + (notes.isEmpty ? "" : "  （" + notes.joined(separator: "；") + "）"))
+                let icon = s.enabled ? "✓" : "–"
+                let programName = s.program.map { ($0 as NSString).lastPathComponent } ?? ""
+                let target = s.address ?? programName
+                let noteText = notes.isEmpty ? "" : "  （" + notes.joined(separator: "；") + "）"
+                print("  \(icon) \(s.name)  [\(s.transport.rawValue)] \(target)\(noteText)")
             }
         }
     }
